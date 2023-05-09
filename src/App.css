@@ -1,0 +1,45 @@
+h1 {
+  margin: 20px 0;
+}
+
+/* CSS postion(3차원 boxing), class 적용방식 정리하기 */
+.select {
+  border: 1px solid black;
+  position: relative;
+  height: 20px;
+  width: 90px;
+  border-radius: 2px;
+}
+
+.select .option-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  max-height: 0;
+}
+
+.select.active .option-list {
+  max-height: none;
+  overflow: scroll;
+  border: 1px solid black;
+}
+
+.text {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  height: 100%;
+  font-size: small;
+}
+
+.option {
+  font-size: small;
+}
