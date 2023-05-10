@@ -4,6 +4,7 @@ import Modal from "./components/Modal";
 import styled from "styled-components";
 
 function App() {
+  // state
   const [isOpen, setIsOpen] = useState(false);
   const [isOpen2, setIsOpen2] = useState(false);
   const [inputValue, setInputValue] = useState({
@@ -13,12 +14,12 @@ function App() {
   const [selectedValue, setSelectedValue] = useState("리액트");
   const [selectedValue2, setSelectedValue2] = useState("리액트");
 
+  // function
   const openModalHandler = ({ target }) => {
     target.className === "Open" ? setIsOpen(true) : setIsOpen2(true);
   };
 
   const closeModalHandler = ({ currentTarget }) => {
-    console.log(currentTarget);
     currentTarget.className === "Modal-Div"
       ? setIsOpen2(false)
       : setIsOpen(false);
@@ -80,8 +81,11 @@ function App() {
     setSelectedValue2(event.currentTarget.innerHTML);
   };
 
+  //JSX
   return (
     <div>
+      <h1>Button</h1>
+
       <div
         style={{
           display: "flex",
@@ -89,7 +93,6 @@ function App() {
           gap: 10,
         }}
       >
-        <h1>Button</h1>
         <div
           style={{
             display: "flex",
@@ -107,9 +110,11 @@ function App() {
               borderColor="lightblue"
             />
           </StyledBtn>
+
           <StyledBtn size="Midium" backColor="lightblue">
             <Btnlabel title="Midium" />
           </StyledBtn>
+
           <StyledBtn size="Small" backColor="lightblue">
             <Btnlabel title="Small" />
           </StyledBtn>
@@ -137,7 +142,9 @@ function App() {
           </StyledBtn>
         </div>
       </div>
+
       <h1>Input</h1>
+
       <div
         style={{
           display: "flex",
@@ -173,6 +180,7 @@ function App() {
       </div>
 
       <h1>Modal</h1>
+
       <div>
         <button className="Open" onClick={openModalHandler}>
           Open Modal
@@ -194,8 +202,10 @@ function App() {
         />
       </div>
 
+      <h1>Select</h1>
+
       <div id="overflowBox">
-        {/* overflow:hidden 해제하는 방법 찾아보기 */}
+        {/* component로 만들기 */}
         <div name="hidden" onClick={onClickSelect} className="select hidden">
           <div className="text">
             <div className="label">{selectedValue}</div>
@@ -216,6 +226,7 @@ function App() {
             </li>
           </ul>
         </div>
+        {/* component로 만들기 */}
         <div name="show" onClick={onClickSelect} className="select">
           <div className="text">
             <div className="label">{selectedValue2}</div>
@@ -243,6 +254,7 @@ function App() {
 
 export default App;
 
+//Styled Component
 const StyledBtn = styled.button`
   // Fixed : 테두리 둥글기
   border-radius: 8px;
@@ -280,6 +292,7 @@ const StyledBtn = styled.button`
     props.backColor !== undefined ? props.backColor : "white"};
 `;
 
+//Component
 function Btnlabel({ title, imoticon = "" }) {
   const style =
     imoticon === "" ? { display: "none" } : { visibility: "visible" };
