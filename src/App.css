@@ -4,32 +4,36 @@ h1 {
 
 /* CSS postion(3차원 boxing), class 적용방식 정리하기 */
 .select {
-  border: 1px solid black;
   position: relative;
-  height: 20px;
-  width: 90px;
+  top: 2px;
+  left: 2px;
+  overflow: hidden;
+  width: 100px;
   border-radius: 2px;
+}
+
+.select.hidden {
+  overflow: visible;
 }
 
 .select .option-list {
   position: absolute;
-  top: 100%;
   left: 0;
-  width: 100%;
   overflow: hidden;
   max-height: 0;
 }
 
 .select.active .option-list {
   max-height: none;
-  overflow: scroll;
   border: 1px solid black;
+  width: 100%;
 }
 
 .text {
   display: flex;
   justify-content: space-between;
   padding: 0 2px;
+  border: 1px solid black;
 }
 
 .label {
@@ -42,4 +46,15 @@ h1 {
 
 .option {
   font-size: small;
+}
+
+#overflowBox {
+  margin-top: 10px;
+  /* position: relative; */
+  display: flex;
+  left: 0;
+  gap: 10px;
+  height: 70px;
+  width: 100%;
+  border: 2px solid grey;
 }

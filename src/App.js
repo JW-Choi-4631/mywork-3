@@ -11,6 +11,7 @@ function App() {
     cost: 0,
   });
   const [selectedValue, setSelectedValue] = useState("리액트");
+  const [selectedValue2, setSelectedValue2] = useState("리액트");
 
   const openModalHandler = ({ target }) => {
     target.className === "Open" ? setIsOpen(true) : setIsOpen2(true);
@@ -61,15 +62,22 @@ function App() {
 
   const onClickSelect = (event) => {
     const isActive = event.currentTarget.className.indexOf("active") !== -1;
+    const isHidden = event.currentTarget.className.indexOf("hidden") !== -1;
     if (isActive) {
-      event.currentTarget.className = "select";
+      event.currentTarget.className = isHidden ? "select hidden" : "select";
     } else {
-      event.currentTarget.className = "select active";
+      event.currentTarget.className = isHidden
+        ? "select hidden active"
+        : "select active";
     }
   };
 
   const onClickOption = (event) => {
     setSelectedValue(event.currentTarget.innerHTML);
+  };
+
+  const onClickOption2 = (event) => {
+    setSelectedValue2(event.currentTarget.innerHTML);
   };
 
   return (
@@ -186,28 +194,9 @@ function App() {
         />
       </div>
 
-      <div
-        style={{
-          display: "flex",
-          gap: 10,
-          height: 60,
-          overflow: "hidden",
-          border: "2px solid lightgray",
-          marginTop: 30,
-        }}
-      >
+      <div id="overflowBox">
         {/* overflow:hidden 해제하는 방법 찾아보기 */}
-        <select
-          style={{
-            height: 20,
-          }}
-        >
-          <option>리액트</option>
-          <option>자바</option>
-          <option>스프링</option>
-          <option>리액트네이티브</option>
-        </select>
-        <div onClick={onClickSelect} className="select">
+        <div name="hidden" onClick={onClickSelect} className="select hidden">
           <div className="text">
             <div className="label">{selectedValue}</div>
             <div className="label">▼</div>
@@ -223,6 +212,26 @@ function App() {
               스프링
             </li>
             <li onClick={onClickOption} className="option">
+              리액트네이티브
+            </li>
+          </ul>
+        </div>
+        <div name="show" onClick={onClickSelect} className="select">
+          <div className="text">
+            <div className="label">{selectedValue2}</div>
+            <div className="label">▼</div>
+          </div>
+          <ul className="option-list">
+            <li onClick={onClickOption2} className="option">
+              리액트
+            </li>
+            <li onClick={onClickOption2} className="option">
+              자바
+            </li>
+            <li onClick={onClickOption2} className="option">
+              스프링
+            </li>
+            <li onClick={onClickOption2} className="option">
               리액트네이티브
             </li>
           </ul>
