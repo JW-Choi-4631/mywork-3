@@ -17,11 +17,11 @@ function Modal({ modalname, closeModalHandler, isOpen, title }) {
       </div>
     ) : (
       <div onClick={closeModalHandler} className="Modal-Div">
-        <div className="Modal">
+        <div onClick={(event) => event.stopPropagation()} className="Modal">
           <div className="Sub-Modal-1">
             <header>{title}</header>
             <div className="Btn-Box">
-              <button>닫기</button>
+              <button onClick={closeModalHandler}>닫기</button>
             </div>
           </div>
           <div>닫으려면 화면 아무곳이나 누르세요.</div>
