@@ -16,6 +16,7 @@ function App() {
 
   // function
   const openModalHandler = ({ target }) => {
+    console.log(target);
     target.className === "Open" ? setIsOpen(true) : setIsOpen2(true);
   };
 
@@ -102,20 +103,20 @@ function App() {
             name="Primary"
             onClick={BtnClickHandler}
             size="Large"
-            borderColor="lightblue"
+            bordercolor="lightblue"
           >
             <Btnlabel
               title="Large Primary Button"
               imoticon="👺"
-              borderColor="lightblue"
+              bordercolor="lightblue"
             />
           </StyledBtn>
 
-          <StyledBtn size="Midium" backColor="lightblue">
+          <StyledBtn size="Midium" backcolor="lightblue">
             <Btnlabel title="Midium" />
           </StyledBtn>
 
-          <StyledBtn size="Small" backColor="lightblue">
+          <StyledBtn size="Small" backcolor="lightblue">
             <Btnlabel title="Small" />
           </StyledBtn>
         </div>
@@ -129,15 +130,15 @@ function App() {
             name="Negative"
             onClick={BtnClickHandler}
             size="Large"
-            borderColor="pink"
+            bordercolor="pink"
             type="Negative"
           >
             <Btnlabel title="Large Negative Button" imoticon="☠️" />
           </StyledBtn>
-          <StyledBtn size="Midium" backColor="pink" type="Negative">
+          <StyledBtn size="Midium" backcolor="pink" type="Negative">
             <Btnlabel title="Midium" />
           </StyledBtn>
-          <StyledBtn size="Small" backColor="pink" type="Negative">
+          <StyledBtn size="Small" backcolor="pink" type="Negative">
             <Btnlabel title="Small" />
           </StyledBtn>
         </div>
@@ -163,7 +164,7 @@ function App() {
         <div>
           가격
           <input
-            maxlength="20"
+            maxLength="20"
             name="cost"
             type="text"
             onChange={changeInputValueHandler}
@@ -173,7 +174,7 @@ function App() {
         <StyledBtn
           onClick={saveBtnClickHandler}
           size="Small"
-          backColor="lightblue"
+          backcolor="lightblue"
         >
           <Btnlabel title="저장" />
         </StyledBtn>
@@ -182,18 +183,29 @@ function App() {
       <h1>Modal</h1>
 
       <div>
-        <button className="Open" onClick={openModalHandler}>
-          Open Modal
-        </button>
+        <StyledBtn
+          bordercolor="lightblue"
+          size="Large"
+          className="Open"
+          onClick={openModalHandler}
+        >
+          <Btnlabel title="Open Modal" imoticon="😤" />
+        </StyledBtn>
         <Modal
           modalname="Modal1"
           closeModalHandler={closeModalHandler}
           isOpen={isOpen}
           title="Modal Type 1"
         />
-        <button className="Open2" onClick={openModalHandler}>
-          Open Modal
-        </button>
+        <StyledBtn
+          size="Midium"
+          type="Negative"
+          backcolor="pink"
+          className="Open2"
+          onClick={openModalHandler}
+        >
+          <Btnlabel title="Open Modal" />
+        </StyledBtn>
         <Modal
           modalname="Modal2"
           closeModalHandler={closeModalHandler}
@@ -286,10 +298,10 @@ const StyledBtn = styled.button`
   border: ${(props) => (props.size === "Large" ? "default" : "none")};
   // Option 3. 테두리 색깔 : 색깔 지정 시
   border-color: ${(props) =>
-    props.borderColor !== undefined ? props.borderColor : "default"};
+    props.bordercolor !== undefined ? props.bordercolor : "default"};
   // Option 4. 배경 색깔 : 흰색 이외의 색깔 지정 시
   background-color: ${(props) =>
-    props.backColor !== undefined ? props.backColor : "white"};
+    props.backcolor !== undefined ? props.backcolor : "white"};
 `;
 
 //Component

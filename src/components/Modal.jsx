@@ -1,4 +1,4 @@
-import "./Modal.css";
+import "../style/Modal.css";
 
 function Modal({ modalname, closeModalHandler, isOpen, title }) {
   if (isOpen) {
