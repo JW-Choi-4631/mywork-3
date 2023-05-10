@@ -15,15 +15,20 @@ function App() {
   const [selectedValue2, setSelectedValue2] = useState("리액트");
 
   // function
-  const openModalHandler = ({ target }) => {
-    console.log(target);
-    target.className === "Open" ? setIsOpen(true) : setIsOpen2(true);
+  const openModalHandler = () => {
+    !isOpen ? setIsOpen(true) : setIsOpen(false);
   };
 
-  const closeModalHandler = ({ currentTarget }) => {
-    currentTarget.className === "Modal-Div"
-      ? setIsOpen2(false)
-      : setIsOpen(false);
+  const openModalHandler2 = () => {
+    !isOpen2 ? setIsOpen2(true) : setIsOpen2(false);
+  };
+
+  const closeModalHandler = () => {
+    isOpen ? setIsOpen(false) : setIsOpen(true);
+  };
+
+  const closeModalHandler2 = () => {
+    isOpen2 ? setIsOpen2(false) : setIsOpen2(true);
   };
 
   const BtnClickHandler = (event) => {
@@ -202,13 +207,13 @@ function App() {
           type="Negative"
           backcolor="pink"
           className="Open2"
-          onClick={openModalHandler}
+          onClick={openModalHandler2}
         >
           <Btnlabel title="Open Modal" />
         </StyledBtn>
         <Modal
           modalname="Modal2"
-          closeModalHandler={closeModalHandler}
+          closeModalHandler={closeModalHandler2}
           isOpen={isOpen2}
           title="Modal Type 2"
         />
