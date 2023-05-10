@@ -272,7 +272,7 @@ export default App;
 const StyledBtn = styled.button`
   // Fixed : 테두리 둥글기
   border-radius: 8px;
-
+  cursor: pointer;
   // Necessary 1. 너비
   width: ${(props) => {
     if (props.size === "Large") {
@@ -308,7 +308,8 @@ const StyledBtn = styled.button`
 
 //Component
 function Btnlabel({ title, imoticon = "" }) {
-  const style =
+  const cursor = { cursor: "pointer" };
+  const hidden =
     imoticon === "" ? { display: "none" } : { visibility: "visible" };
   return { imoticon } === "" ? (
     <label>{title}</label>
@@ -320,8 +321,8 @@ function Btnlabel({ title, imoticon = "" }) {
         gap: 5,
       }}
     >
-      <label>{title}</label>
-      <label style={style}>{imoticon}</label>
+      <label style={cursor}>{title}</label>
+      <label style={{ ...cursor, ...hidden }}>{imoticon}</label>
     </div>
   );
 }
