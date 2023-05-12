@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import "./App.css";
+import "./styles/App.css";
 import Modal from "./components/Modal";
-import styled from "styled-components";
+import ButtonLabel from "./components/ButtonLabel";
+import StyledBtn from "./components/StyledBtn";
 
 function App() {
   // state
@@ -24,7 +25,7 @@ function App() {
     setIsOpen2(false);
   };
 
-  const BtnClickHandler = (event) => {
+  const stBtnClickHandler = (event) => {
     event.currentTarget.name === "Primary"
       ? alert("버튼을 만들어보세요!")
       : window.confirm("어렵나요?");
@@ -99,11 +100,11 @@ function App() {
         >
           <StyledBtn
             name="Primary"
-            onClick={BtnClickHandler}
+            onClick={stBtnClickHandler}
             size="Large"
             bordercolor="lightblue"
           >
-            <Btnlabel
+            <ButtonLabel
               title="Large Primary Button"
               imoticon="👺"
               bordercolor="lightblue"
@@ -111,11 +112,11 @@ function App() {
           </StyledBtn>
 
           <StyledBtn size="Midium" backcolor="lightblue">
-            <Btnlabel title="Midium" />
+            <ButtonLabel title="Midium" />
           </StyledBtn>
 
           <StyledBtn size="Small" backcolor="lightblue">
-            <Btnlabel title="Small" />
+            <ButtonLabel title="Small" />
           </StyledBtn>
         </div>
 
@@ -126,18 +127,18 @@ function App() {
         >
           <StyledBtn
             name="Negative"
-            onClick={BtnClickHandler}
+            onClick={stBtnClickHandler}
             size="Large"
             bordercolor="pink"
             type="Negative"
           >
-            <Btnlabel title="Large Negative Button" imoticon="☠️" />
+            <ButtonLabel title="Large Negative Button" imoticon="☠️" />
           </StyledBtn>
           <StyledBtn size="Midium" backcolor="pink" type="Negative">
-            <Btnlabel title="Midium" />
+            <ButtonLabel title="Midium" />
           </StyledBtn>
           <StyledBtn size="Small" backcolor="pink" type="Negative">
-            <Btnlabel title="Small" />
+            <ButtonLabel title="Small" />
           </StyledBtn>
         </div>
       </div>
@@ -174,7 +175,7 @@ function App() {
           size="Small"
           backcolor="lightblue"
         >
-          <Btnlabel title="저장" />
+          <ButtonLabel title="저장" />
         </StyledBtn>
       </div>
 
@@ -188,7 +189,7 @@ function App() {
           className="Open"
           onClick={openModalHandler}
         >
-          <Btnlabel title="Open Modal" imoticon="😤" />
+          <ButtonLabel title="Open Modal" imoticon="😤" />
         </StyledBtn>
         <Modal
           name="Modal1"
@@ -205,7 +206,7 @@ function App() {
           className="Open2"
           onClick={openModalHandler}
         >
-          <Btnlabel title="Open Modal" />
+          <ButtonLabel title="Open Modal" />
         </StyledBtn>
         <Modal
           name="Modal2"
@@ -269,60 +270,3 @@ function App() {
 export default App;
 
 //Styled Component
-const StyledBtn = styled.button`
-  // Fixed : 테두리 둥글기
-  border-radius: 8px;
-  cursor: pointer;
-  // Necessary 1. 너비
-  width: ${(props) => {
-    if (props.size === "Large") {
-      return "fit-content";
-    } else if (props.size === "Midium") {
-      return "100px";
-    } else {
-      return "80px";
-    }
-  }};
-  // Necessary 2. 높이
-  height: ${(props) => {
-    if (props.size === "Large") {
-      return "50px";
-    } else if (props.size === "Midium") {
-      return "40px";
-    } else {
-      return "30px";
-    }
-  }};
-
-  // Option 1. 폰트 색깔 : 빨간색 적용이 필요할 때
-  color: ${(props) => (props.type === "Negative" ? "red" : "default")};
-  // Option 2. 테두리 유무 : 없을 경우만 none
-  border: ${(props) => (props.size === "Large" ? "default" : "none")};
-  // Option 3. 테두리 색깔 : 색깔 지정 시
-  border-color: ${(props) =>
-    props.bordercolor !== undefined ? props.bordercolor : "default"};
-  // Option 4. 배경 색깔 : 흰색 이외의 색깔 지정 시
-  background-color: ${(props) =>
-    props.backcolor !== undefined ? props.backcolor : "white"};
-`;
-
-//Component
-function Btnlabel({ title, imoticon = "" }) {
-  const cursor = { cursor: "pointer" };
-  const hidden =
-    imoticon === "" ? { display: "none" } : { visibility: "visible" };
-  return { imoticon } === "" ? (
-    <label>{title}</label>
-  ) : (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "center",
-        gap: 5,
-      }}
-    >
-      <label style={cursor}>{title}</label>
-      <label style={{ ...cursor, ...hidden }}>{imoticon}</label>
-    </div>
-  );
-}
